@@ -39,7 +39,7 @@ function pcn_stock_sync_updateajax() {
     $stockList = $curl->getStockList();
 
     $product = wc_get_product( $product_id );
-
+    $productFound = 0;
     $toPrint = "noChange";
 
     foreach ($stockList->results as $stockItem) {
@@ -53,7 +53,12 @@ function pcn_stock_sync_updateajax() {
 
                 $toPrint = $stockItem->instock;
             }
+            $productFound = 1;
         }
+    }
+
+    if($productFound == 0) {
+        $toPrint = "notFound";
     }
 
     echo $toPrint;
@@ -82,10 +87,14 @@ function pcn_stock_sync_updatebutton() {
                 }
 
                 jQuery.post(ajaxurl, data, function (response) {
-                    if(response !== 'noChange') {
+                    if(response !== 'noChange' && response !== 'notFound') {
                         jQuery('#_stock').val(response);
                     } else {
-                        alert('Lagerantallet stemmer allerede overens.');
+                        if(response === 'notFound') {
+                            alert('Varenummeret findes ikke hos PakkecenterNord.');
+                        } else {
+                            alert('Lagerantallet stemmer allerede overens.');
+                        }
                     }
 
                     jQuery("#pcn-stocksync-button").removeClass('button-disabled').addClass('button-primary');
