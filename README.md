@@ -10,6 +10,8 @@ _**Do not redistribute or use the version from this repository for monetary gain
 
 # Description
 
+![Image of the plugin - Coolrunner](https://i.imgur.com/pN9176t.png)
+
 This plugin is used for WooCommerce to keep your stock synchronized with PCN/PakkecenterNord (http://pakkecenternord.dk). 
 
 **> Update stock on click**
@@ -36,6 +38,8 @@ Go to your Wordpress website (with woocommerce enabled) and go to "Plugins -> Ad
 Once the archive has been selected click "Install Now". Activate the plugin and set it up.
 
 # Settings
+
+![Image of the plugin settings - Coolrunner](https://i.imgur.com/yPlIhnm.png)
 
 Within Woocommerce > Settings > "PakkecenterNord - Indstillinger" you will need to insert the informations given by PakkecenterNord / InventNord.
 
