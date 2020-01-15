@@ -74,6 +74,7 @@ function pcn_stock_sync_updatebutton() {
             console.log('PCN StockSync - Loaded');
 
             jQuery("#pcn-stocksync-button").click(function () {
+                jQuery(this).removeClass('button-primary').addClass('button-disabled');
                 var id = jQuery(this).data('id');
                 var data = {
                     'action': 'pcn_stock_sync_updateajax',
@@ -83,7 +84,11 @@ function pcn_stock_sync_updatebutton() {
                 jQuery.post(ajaxurl, data, function (response) {
                     if(response !== 'noChange') {
                         jQuery('#_stock').val(response);
+                    } else {
+                        alert('Lagerantallet stemmer allerede overens.');
                     }
+
+                    jQuery("#pcn-stocksync-button").removeClass('button-disabled').addClass('button-primary');
                 })
             });
         });
