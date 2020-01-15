@@ -12,7 +12,7 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
         {
             public function __construct() {
                 $this->id = 'pcnstocksync';
-                $this->label = 'PCN - WooCommerce Lagersynkronisering';
+                $this->label = 'PakkecenterNord - Indstillinger';
 
                 add_filter('woocommerce_settings_tabs_array', array($this, 'add_settings_page'), 20);
                 add_action('woocommerce_settings_' . $this->id, array($this, 'output'));
