@@ -22,6 +22,9 @@ You are able to update the stock quantity by clicking on a new button within the
 
 In settings of the plugin you are able to activate the possibility that the stock quantity on the a product every time you recieve a new order.
 
+**> Bulk action to update multiple stock quantities**
+
+In action dropdown within the product list you can bulk update multiple stock quantities just by selecting the products you want updated.
 
 # Installation
 

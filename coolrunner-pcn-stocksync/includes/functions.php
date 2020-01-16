@@ -61,6 +61,8 @@ function pcn_stock_sync_updateajax() {
         $toPrint = "notFound";
     }
 
+    error_log('toPrint: ' . $toPrint);
+
     echo $toPrint;
     wp_die();
 }
@@ -104,4 +106,52 @@ function pcn_stock_sync_updatebutton() {
 
     </script>
     <?php
+}
+
+// Add bulk action to update stock
+add_filter( 'bulk_actions-edit-product', 'pcn_stock_sync_addbulkaction', 20, 1 );
+function pcn_stock_sync_addbulkaction( $actions ) {
+    $actions['update_all_stockquantity'] = __( 'PCN: Opdater lagerantal' );
+    return $actions;
+}
+
+// Handle bulk action
+add_filter( 'handle_bulk_actions-edit-product', 'pcn_stock_sync_updatebulkaction', 10, 3 );
+function pcn_stock_sync_updatebulkaction( $redirect_to, $doaction, $post_ids ) {
+
+    // Get stocklist by performing cURL to PCN
+    $curl = new PCNStockSync_Curl();
+    $stockList = $curl->getStockList();
+    $countChanged = 0;
+
+    foreach ($post_ids as $post_id) {
+        $product = wc_get_product( $post_id );
+        $productFound = 0;
+        $toPrint = "noChange";
+
+        foreach ($stockList->results as $stockItem) {
+            // Check if product with same SKU exists at PCN
+            if($stockItem->articleno == $product->get_sku()) {
+                // Check if stock quantity isn't the same in WooCommerce as stock at PCN
+                if($stockItem->instock != $product->get_stock_quantity()) {
+                    // Set quantity and save product if amount isn't same as PCN
+                    $product->set_stock_quantity($stockItem->instock);
+                    $product->save();
+
+                    $toPrint = $stockItem->instock;
+                }
+                $productFound = 1;
+            }
+        }
+
+        if($productFound == 0) {
+            $toPrint = "notFound";
+        }
+
+        if($toPrint != 'notFound' AND $toPrint != 'noChange') {
+            $countChanged++;
+        }
+    }
+
+    return admin_url() . 'edit.php?post_type=product';
 }
