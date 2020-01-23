@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: PCN - WooCommerce StockSync
+ * Plugin Name: CoolRunner: PCN StockSync
  * Plugin URI: http://coolrunner.dk
  * Description: Lagersynkronisering af WooCommerce imod PakkecenterNord
  * Version: 1.0
@@ -26,6 +26,11 @@ if (!defined('ABSPATH')) {
 // Define version of plugin
 define('PCN_WOOCOMMERCE_STOCK', '1.0');
 
+add_action('plugins_loaded', 'pcn_stocksync_load_textdomain');
+function pcn_stocksync_load_textdomain() {
+    load_plugin_textdomain('coolrunner-pcn-stocksync', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+}
+
 // Check if woocommerce is active
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if (!is_plugin_active('woocommerce/woocommerce.php')) {
@@ -34,8 +39,8 @@ if (!is_plugin_active('woocommerce/woocommerce.php')) {
     add_action('admin_notices', function () {
         ?>
         <div class="notice notice-warning">
-            <p><?php echo 'PCN StockSync kræver, at WooCommerce er aktivt.'; ?></p>
-            <p><?php echo 'Du kan downloade WooCommerce her: ' . sprintf('<a href="%s/wp-admin/plugin-install.php?s=WooCommerce&tab=search&type=term">Download</a>', get_site_url()) ?></p>
+            <p><?php echo __('PCN StockSync requires that WooCommerce is installed.', 'coolrunner-pcn-stocksync'); ?></p>
+            <p><?php echo __('You can download WooCommerce here: ', 'coolrunner-pcn-stocksync') . sprintf('<a href="%s/wp-admin/plugin-install.php?s=WooCommerce&tab=search&type=term">Download</a>', get_site_url()) ?></p>
         </div>
         <?php
     });
@@ -54,7 +59,6 @@ if (!is_plugin_active('woocommerce/woocommerce.php')) {
         $links[] = '<a href="' . admin_url('admin.php?page=wc-settings&tab=pcnstocksync') . '">Indstillinger</a>';
         return $links;
     }
-
 
     include(PCN_STOCKSYNC_DIR . 'includes/curl.php');
     include(PCN_STOCKSYNC_DIR . 'includes/functions.php');

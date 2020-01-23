@@ -12,7 +12,7 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
         {
             public function __construct() {
                 $this->id = 'pcnstocksync';
-                $this->label = 'PakkecenterNord - Indstillinger';
+                $this->label = __('PakkecenterNord - Settings', 'coolrunner-pcn-stocksync');
 
                 add_filter('woocommerce_settings_tabs_array', array($this, 'add_settings_page'), 20);
                 add_action('woocommerce_settings_' . $this->id, array($this, 'output'));
@@ -26,7 +26,7 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
             public function get_settings($current_section = '') {
                 $menu = array(
                     array(
-                        'name' => 'PCN WooCommerce Lagersynkronisering - Indstillinger',
+                        'name' => __('PCN WooCommerce StockSync - Settings', 'coolrunner-pcn-stocksync'),
                         'type' => 'title',
                         'desc' => '',
                         'id' => 'pcnstocksync_settings',
@@ -36,49 +36,49 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
                         'type' => 'text',
                         'id' => 'pcn_settings_apiendpoint',
                         'desc_tip' => true,
-                        'desc' => 'Indtast dit PCN API Endpoint (eks: https://xx.xx.dk/rest/v6/api.php)',
+                        'desc' => __('Fill your PCN API Endpoint (https://xx.xx.dk/rest/v6/api.php)', 'coolrunner-pcn-stocksync'),
                     ),
                     array(
-                        'name' => 'PCN Base-Auth Brugernavn',
+                        'name' => __('PCN Base-Auth Username', 'coolrunner-pcn-stocksync'),
                         'type' => 'text',
                         'id' => 'pcn_settings_baseauthusername',
                         'desc_tip' => true,
-                        'desc' => 'Indtast dit PCN Base-Auth Brugeravn (eks: xxx1000)',
+                        'desc' => __('Fill your PCN Base-Auth username', 'coolrunner-pcn-stocksync'),
                     ),
                     array(
-                        'name' => 'PCN Base-Auth Kodeord',
+                        'name' => __('PCN Base-Auth Password', 'coolrunner-pcn-stocksync'),
                         'type' => 'password',
                         'id' => 'pcn_settings_baseauthpassword',
                         'desc_tip' => true,
-                        'desc' => 'Indtast dit PCN Base-Auth kodeord (eks: xx1000)',
+                        'desc' => __('Fill your PCN Base-Auth password (ex: xx1000)', 'coolrunner-pcn-stocksync'),
                     ),
                     array(
-                        'name' => 'PCN OLS Kunde ID',
+                        'name' => __('PCN OLS Customer ID', 'coolrunner-pcn-stocksync'),
                         'type' => 'text',
                         'id' => 'pcn_settings_olsuserid',
                         'desc_tip' => true,
-                        'desc' => 'Indtast dit PCN OLS Kunde ID (eks: 88)',
+                        'desc' => __('Fill your PCN OLS Customer ID (ex: 88)', 'coolrunner-pcn-stocksync'),
                     ),
                     array(
-                        'name' => 'PCN OLS Kunde Brugernavn',
+                        'name' => __('PCN OLS Customer Username', 'coolrunner-pcn-stocksync'),
                         'type' => 'text',
                         'id' => 'pcn_settings_olsusername',
                         'desc_tip' => true,
-                        'desc' => 'Indtast dit PCN OLS Kunde Brugernavn (eks: xx10)',
+                        'desc' => __('Fill your PCN OLS Customer Username (ex: xx10)', 'coolrunner-pcn-stocksync'),
                     ),
                     array(
-                        'name' => 'PCN OLS Kunde Kodeord',
+                        'name' => __('PCN OLS Customer Password', 'coolrunner-pcn-stocksync'),
                         'type' => 'password',
                         'id' => 'pcn_settings_olspassword',
                         'desc_tip' => true,
-                        'desc' => 'Indtast dit PCN OLS Kunde Kodeord (eks: x1000)',
+                        'desc' => __('Fill your PCN OLS Customer Password (ex: x1000)', 'coolrunner-pcn-stocksync'),
                     ),
                     array(
-                        'name' => 'Hent lagerantal ved ny ordre?',
+                        'name' => __('Get stock quantity at new order placed?', 'coolrunner-pcn-stocksync'),
                         'type' => 'checkbox',
                         'id' => 'pcn_settings_updateonorder',
                         'desc_tip' => false,
-                        'desc' => 'Hent lagerantal ved hver ordre der er gennemført.',
+                        'desc' => __('Get stock quantity when ever a new order is placed', 'coolrunner-pcn-stocksync'),
                     )
                 );
 

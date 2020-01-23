@@ -73,13 +73,11 @@ function pcn_stock_sync_updatebutton() {
     ?>
     <script type="text/javascript">
         jQuery(function ($) {
-            var newButton = $("<div style='width: 100%; border-top: 1px solid #eeeeee; padding: 10px;'><a data-id='<?php echo get_the_ID(); ?>' id='pcn-stocksync-button' class='button button-primary button-large'>Hent lagerantal fra PakkecenterNord</a></div>");
+            var newButton = $("<div style='width: 100%; border-top: 1px solid #eeeeee; padding: 10px;'><a data-id='<?php echo get_the_ID(); ?>' id='pcn-stocksync-button' class='button button-primary button-large'><?php echo __('Get stock quantity from PakkecenterNord', 'coolrunner-pcn-stocksync'); ?>></a></div>");
             jQuery('.stock_fields').append(newButton)
         });
 
         jQuery(document).ready(function () {
-            console.log('PCN StockSync - Loaded');
-
             jQuery("#pcn-stocksync-button").click(function () {
                 jQuery(this).removeClass('button-primary').addClass('button-disabled');
                 var id = jQuery(this).data('id');
@@ -93,9 +91,9 @@ function pcn_stock_sync_updatebutton() {
                         jQuery('#_stock').val(response);
                     } else {
                         if(response === 'notFound') {
-                            alert('Varenummeret findes ikke hos PakkecenterNord.');
+                            alert('<?php echo __('SKU does not exist at PakkecenterNord', 'coolrunner-pcn-stocksync'); ?>>');
                         } else {
-                            alert('Lagerantallet stemmer allerede overens.');
+                            alert('<?php echo __('Quantity is already correct', 'pcn-stocksync') ?>');
                         }
                     }
 
@@ -111,7 +109,7 @@ function pcn_stock_sync_updatebutton() {
 // Add bulk action to update stock
 add_filter( 'bulk_actions-edit-product', 'pcn_stock_sync_addbulkaction', 20, 1 );
 function pcn_stock_sync_addbulkaction( $actions ) {
-    $actions['update_all_stockquantity'] = __( 'PCN: Opdater lagerantal' );
+    $actions['update_all_stockquantity'] = __( __('PCN - Update stock quantity', 'coolrunner-pcn-stocksync') );
     return $actions;
 }
 
