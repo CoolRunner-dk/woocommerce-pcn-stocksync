@@ -18,6 +18,7 @@ class PCNStockSync_Curl {
         // JSON encode postfields
         $jsonPostfields = json_encode($postFields);
 
+
         // Set cURL array
         curl_setopt_array($curl, array(
             CURLOPT_URL => get_option('pcn_settings_apiendpoint') . '?rquest=' . $request,
@@ -43,6 +44,7 @@ class PCNStockSync_Curl {
         curl_close($curl);
 
         return $response;
+
     }
 
     /**
@@ -62,7 +64,7 @@ class PCNStockSync_Curl {
         );
 
         // Send cURL request through sendCurl function
-        $jsonData = $this->sendCurl('stocklist', $data);
+        $jsonData = self::sendCurl('stocklist', $data);
 
         // Return array from json decoded data
         return json_decode($jsonData);

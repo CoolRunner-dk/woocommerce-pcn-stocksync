@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CoolRunner: PCN StockSync\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-23 14:29+0000\n"
-"PO-Revision-Date: 2020-01-23 14:30+0000\n"
+"POT-Creation-Date: 2020-01-24 13:35+0000\n"
+"PO-Revision-Date: 2020-01-24 13:35+0000\n"
 "Last-Translator: admin <kh@coolrunner.dk>\n"
 "Language-Team: Dansk\n"
 "Language: da_DK\n"
@@ -31,12 +31,9 @@ msgid "SKU does not exist at PakkecenterNord"
 msgstr "Varenummeret findes ikke ved PakkecenterNor"
 
 #: includes/admin/class-pcnstocksync-settings.php:15
-msgid "PakkecenterNord - Settings"
-msgstr "PakkecenterNord - Indstillinger"
-
 #: includes/admin/class-pcnstocksync-settings.php:29
-msgid "PCN WooCommerce StockSync - Settings"
-msgstr "PCN WooCommerce StockSync - Indstillinger"
+msgid "PCN StockSync - Settings"
+msgstr "PCN StockSync - Indstillinger"
 
 #: includes/admin/class-pcnstocksync-settings.php:39
 msgid "Fill your PCN API Endpoint (https://xx.xx.dk/rest/v6/api.php)"

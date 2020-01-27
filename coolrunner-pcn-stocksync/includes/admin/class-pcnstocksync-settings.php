@@ -12,7 +12,7 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
         {
             public function __construct() {
                 $this->id = 'pcnstocksync';
-                $this->label = __('PakkecenterNord - Settings', 'coolrunner-pcn-stocksync');
+                $this->label = __('PCN StockSync - Settings', 'coolrunner-pcn-stocksync');
 
                 add_filter('woocommerce_settings_tabs_array', array($this, 'add_settings_page'), 20);
                 add_action('woocommerce_settings_' . $this->id, array($this, 'output'));
@@ -26,7 +26,7 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
             public function get_settings($current_section = '') {
                 $menu = array(
                     array(
-                        'name' => __('PCN WooCommerce StockSync - Settings', 'coolrunner-pcn-stocksync'),
+                        'name' => __('PCN StockSync - Settings', 'coolrunner-pcn-stocksync'),
                         'type' => 'title',
                         'desc' => '',
                         'id' => 'pcnstocksync_settings',

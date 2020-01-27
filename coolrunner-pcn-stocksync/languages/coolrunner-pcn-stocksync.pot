@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CoolRunner: PCN StockSync\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-23 14:29+0000\n"
+"POT-Creation-Date: 2020-01-24 13:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -32,11 +32,8 @@ msgid "SKU does not exist at PakkecenterNord"
 msgstr ""
 
 #: includes/admin/class-pcnstocksync-settings.php:15
-msgid "PakkecenterNord - Settings"
-msgstr ""
-
 #: includes/admin/class-pcnstocksync-settings.php:29
-msgid "PCN WooCommerce StockSync - Settings"
+msgid "PCN StockSync - Settings"
 msgstr ""
 
 #: includes/admin/class-pcnstocksync-settings.php:39
