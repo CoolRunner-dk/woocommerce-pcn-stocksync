@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CoolRunner: PCN StockSync\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-24 13:35+0000\n"
+"POT-Creation-Date: 2020-08-11 08:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,20 +15,24 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.1; wp-5.3.2"
 
-#: woocommerce_pcn_stocksync.php:42
+#: woocommerce_pcn_stocksync.php:43
 msgid "PCN StockSync requires that WooCommerce is installed."
 msgstr ""
 
-#: woocommerce_pcn_stocksync.php:43
+#: woocommerce_pcn_stocksync.php:44
 msgid "You can download WooCommerce here: "
 msgstr ""
 
-#: includes/functions.php:76
+#: includes/functions.php:78
 msgid "Get stock quantity from PakkecenterNord"
 msgstr ""
 
-#: includes/functions.php:94
+#: includes/functions.php:96
 msgid "SKU does not exist at PakkecenterNord"
+msgstr ""
+
+#: includes/functions.php:170
+msgid "Every 3 hours"
 msgstr ""
 
 #: includes/admin/class-pcnstocksync-settings.php:15

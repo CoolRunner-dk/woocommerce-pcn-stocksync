@@ -30,6 +30,8 @@ function pcn_stock_sync_on_order( $order_id ) {
     }
 }
 
+
+
 add_action( 'wp_ajax_pcn_stock_sync_updateajax', 'pcn_stock_sync_updateajax' );
 function pcn_stock_sync_updateajax() {
     $product_id = $_POST['id'];
@@ -73,7 +75,7 @@ function pcn_stock_sync_updatebutton() {
     ?>
     <script type="text/javascript">
         jQuery(function ($) {
-            var newButton = $("<div style='width: 100%; border-top: 1px solid #eeeeee; padding: 10px;'><a data-id='<?php echo get_the_ID(); ?>' id='pcn-stocksync-button' class='button button-primary button-large'><?php echo __('Get stock quantity from PakkecenterNord', 'coolrunner-pcn-stocksync'); ?>></a></div>");
+            var newButton = $("<div style='width: 100%; border-top: 1px solid #eeeeee; padding: 10px;'><a data-id='<?php echo get_the_ID(); ?>' id='pcn-stocksync-button' class='button button-primary button-large'><?php echo __('Get stock quantity from PakkecenterNord', 'coolrunner-pcn-stocksync'); ?></a></div>");
             jQuery('.stock_fields').append(newButton)
         });
 
@@ -152,4 +154,61 @@ function pcn_stock_sync_updatebulkaction( $redirect_to, $doaction, $post_ids ) {
     }
 
     return admin_url() . 'edit.php?post_type=product';
+}
+
+// Create cron function
+add_action('wp_scheduled_pcn_stocksync', 'pcn_stocksync_cron');
+function pcn_stocksync_cron() {
+    if(get_option('pcn_settings_updatecron') == 'yes') {
+        // Get stocklist by performing cURL to PCN
+        $curl = new PCNStockSync_Curl();
+        $stockList = $curl->getStockList();
+
+        // Pagination
+        $args = array(
+            'post_type' => 'product',
+            'posts_per_page' => 10
+        );
+
+        $loop = new WP_Query($args);
+
+        while ($loop->have_posts()): $loop->the_post();
+            global $product;
+            foreach ($stockList->results as $pcnProduct) {
+                if ($pcnProduct->articleno == $product->get_sku()) {
+                    $newStock = ($pcnProduct->instock - $pcnProduct->onorder);
+                    if ($product->get_stock_quantity() != $newStock) {
+                        $product->set_stock_quantity($newStock);
+                        $product->save();
+                    }
+                }
+            }
+        endwhile;
+
+        // empty the query
+        wp_reset_query();
+    }
+}
+
+// Register cron intervals
+add_filter('cron_schedules', 'pcn_stocksync_cron_intervals');
+function pcn_stocksync_cron_intervals($schedules) {
+    $schedules['every3hours'] = array(
+        'interval' => 10800, // 10800 seconds = 3 hours
+        'display' => __('Every 3 hours', 'coolrunner-pcn-stocksync')
+    );
+
+    return $schedules;
+}
+
+// Handle activation of plugin and create event
+register_activation_hook(PLUGIN_FILE_URL, 'pcn_stocksync_activate');
+function pcn_stocksync_activate() {
+    wp_schedule_event(time(), 'every3hours', 'wp_scheduled_pcn_stocksync');
+}
+
+// Handle deactivation of plugin and remove event
+register_deactivation_hook(PLUGIN_FILE_URL, 'pcn_stocksync_deactivate');
+function pcn_stocksync_deactivate() {
+    wp_clear_scheduled_hook('wp_scheduled_pcn_stocksync');
 }

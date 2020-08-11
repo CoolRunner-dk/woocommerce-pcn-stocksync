@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CoolRunner: PCN StockSync\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-24 13:35+0000\n"
-"PO-Revision-Date: 2020-01-24 13:35+0000\n"
-"Last-Translator: admin <kh@coolrunner.dk>\n"
+"POT-Creation-Date: 2020-08-11 08:22+0000\n"
+"PO-Revision-Date: 2020-08-11 08:22+0000\n"
+"Last-Translator: \n"
 "Language-Team: Dansk\n"
 "Language: da_DK\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -12,23 +12,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.3.1; wp-5.3.2"
+"X-Loco-Version: 2.4.2; wp-5.3.4"
 
-#: woocommerce_pcn_stocksync.php:42
+#: woocommerce_pcn_stocksync.php:43
 msgid "PCN StockSync requires that WooCommerce is installed."
 msgstr "PCN StockSync kræver, at WooCommerce er installeret."
 
-#: woocommerce_pcn_stocksync.php:43
+#: woocommerce_pcn_stocksync.php:44
 msgid "You can download WooCommerce here: "
 msgstr "Du kan download WooCommerce her: "
 
-#: includes/functions.php:76
+#: includes/functions.php:78
 msgid "Get stock quantity from PakkecenterNord"
 msgstr "Hent lagerantal fra PakkecenterNord"
 
-#: includes/functions.php:94
+#: includes/functions.php:96
 msgid "SKU does not exist at PakkecenterNord"
 msgstr "Varenummeret findes ikke ved PakkecenterNor"
+
+#: includes/functions.php:170
+msgid "Every 3 hours"
+msgstr "Hver 3. time"
 
 #: includes/admin/class-pcnstocksync-settings.php:15
 #: includes/admin/class-pcnstocksync-settings.php:29

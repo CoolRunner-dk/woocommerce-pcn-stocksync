@@ -79,6 +79,13 @@ if (!class_exists('WC_Settings_PCNStockSync')) {
                         'id' => 'pcn_settings_updateonorder',
                         'desc_tip' => false,
                         'desc' => __('Get stock quantity when ever a new order is placed', 'coolrunner-pcn-stocksync'),
+                    ),
+                    array(
+                        'name' => __('Update stock from PCN every 3. hours', 'coolrunner-pcn-stocksync'),
+                        'type' => 'checkbox',
+                        'id' => 'pcn_settings_updatecron',
+                        'desc_tip' => false,
+                        'desc' => __('Get stock every 3. hours from PCN', 'coolrunner-pcn-stocksync'),
                     )
                 );
 

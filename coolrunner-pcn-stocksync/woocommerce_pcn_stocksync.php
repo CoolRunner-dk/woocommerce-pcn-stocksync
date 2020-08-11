@@ -25,6 +25,7 @@ if (!defined('ABSPATH')) {
 
 // Define version of plugin
 define('PCN_WOOCOMMERCE_STOCK', '1.0');
+define('PLUGIN_FILE_URL', __FILE__);
 
 add_action('plugins_loaded', 'pcn_stocksync_load_textdomain');
 function pcn_stocksync_load_textdomain() {
