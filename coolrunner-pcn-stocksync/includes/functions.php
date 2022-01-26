@@ -166,7 +166,8 @@ function pcn_stocksync_cron() {
 
         // Pagination
         $args = array(
-            'post_type' => 'product'
+            'post_type' => array('product', 'product_variation'),
+            'posts_per_page' => 100
         );
 
         $loop = new WP_Query($args);
