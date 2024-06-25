@@ -165,26 +165,35 @@ function pcn_stocksync_cron() {
         $stockList = $curl->getStockList();
 
         // Pagination
+        $paged = 1;
         $args = array(
             'post_type' => array('product', 'product_variation'),
-            'posts_per_page' => 100
+            'posts_per_page' => 100,
+            'paged' => $paged
         );
-
+        
         $loop = new WP_Query($args);
 
-        while ($loop->have_posts()): $loop->the_post();
-            global $product;
-            foreach ($stockList->results as $pcnProduct) {
-                if ($pcnProduct->articleno == $product->get_sku()) {
-                    $newStock = ($pcnProduct->instock - $pcnProduct->onorder);
-                    if ($product->get_stock_quantity() != $newStock) {
-                        $product->set_stock_quantity($newStock);
-                        $product->save();
+        while ($loop->have_posts()) {
+            while ($loop->have_posts()): $loop->the_post();
+                global $product;
+                foreach ($stockList->results as $pcnProduct) {
+                    if ($pcnProduct->articleno == $product->get_sku()) {
+                        $newStock = ($pcnProduct->instock - $pcnProduct->onorder);
+                        if ($product->get_stock_quantity() != $newStock) {
+                            $product->set_stock_quantity($newStock);
+                            $product->save();
+                        }
                     }
                 }
-            }
-        endwhile;
-
+            endwhile;
+        
+            $paged++;
+            $args['paged'] = $paged;
+            
+            $loop = new WP_Query($args);
+        }
+        
         // empty the query
         wp_reset_query();
     }
