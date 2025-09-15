@@ -1,4 +1,4 @@
-WooCommerce PCN StockSync
+WooCommerce PCN StockSync (DEPRECATED)
 ==========================
 
 License: MIT
